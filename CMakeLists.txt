@@ -8,11 +8,17 @@ add_executable(${PRROJ_NAME} ${SOURCES})
 
 #find Boost
 include(${CMAKE_SOURCE_DIR}/cmake/Modules/getBoost.cmake)
+find_package(Boost COMPONENTS
+    date_time
+    thread
+    REQUIRED
+)
+   
 if(Boost_FOUND)
 	message("Boost_FOUND & include_directories(${BOOST_INCLUDE_DIRS})")
 	include_directories(${BOOST_INCLUDE_DIRS})
 	message(".target_link_libraries(${PRROJ_NAME} ${BOOST_LIBRARIES})")
-	target_link_libraries(${PRROJ_NAME} ${BOOST_LIBRARIES})
+	target_link_libraries(${PRROJ_NAME} ${Boost_LIBRARIES})
 
 endif()
 
