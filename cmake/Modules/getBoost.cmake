@@ -1,10 +1,10 @@
 
 message("setting boost multithread/static_libs/static_runtime")
-SET(Boost_DEBUG ON) # Set to ON to enable debug output from FindBoost.
-SET(Boost_DETAILED_FAILURE_MSG ON)
-SET(Boost_USE_MULTITHREADED ON)
-SET(Boost_USE_STATIC_LIBS ON)
-SET(Boost_USE_STATIC_RUNTIME ON)
+set(Boost_DEBUG ON) # Set to ON to enable debug output from FindBoost.
+set(Boost_DETAILED_FAILURE_MSG ON)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_LIBS ON)
+set(Boost_USE_STATIC_RUNTIME OFF)
 
 
 if(WIN32)
@@ -13,8 +13,14 @@ if(WIN32)
 		"$ENV{BOOST_ROOT}"
 		"$ENV{BOOSTROOT}"
 	)
+	message("BOOST_ROOT is ${BOOST_ROOT}")
+	
+	find_path(BOOST_LIBRARYDIR NAMES lib/libboost*.lib HINTS
+		"$ENV{BOOST_ROOT}"
+		"$ENV{BOOSTROOT}"
+	)
+	
 endif()
 
 message("find_package(Boost)")
 find_package(Boost COMPONENTS ${NEED_BOOST_COMPONENTS} REQUIRED)
-
