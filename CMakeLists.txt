@@ -1,9 +1,9 @@
 cmake_minimum_required (VERSION 3.5)
 
 SET(PRROJ_NAME cmake_test_boost)
-SET(SOURCES "main.cpp")
-
 project (${PRROJ_NAME})
+
+SET(SOURCES "main.cpp")
 add_executable(${PRROJ_NAME} ${SOURCES})
 
 #find Boost
