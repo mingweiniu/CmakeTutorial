@@ -5,7 +5,7 @@ SET(PRROJ_NAME cmake_test_boost)
 project (${PRROJ_NAME})
 add_executable(${PRROJ_NAME} main.cpp)
 
-include(${CMAKE_SOURCE_DIR}/cmake/modules/getBoost.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Modules/getBoost.cmake)
 if(Boost_FOUND)
 	message("Boost_FOUND")
 	message("include_directories(${BOOST_INCLUDE_DIRS})")
