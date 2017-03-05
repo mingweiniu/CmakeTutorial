@@ -16,4 +16,5 @@ if(WIN32)
 endif()
 
 message("find_package(Boost)")
-find_package(Boost)
+find_package(Boost COMPONENTS ${NEED_BOOST_COMPONENTS} REQUIRED)
+
