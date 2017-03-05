@@ -1,5 +1,9 @@
 # cmake_test_boost
 
-you will fail if just $ g++ main.cpp
+on unix, you will fail if just 
+$ g++ main.cpp
 
-you need $ mkdir build && cd build && cmake .. && make
+you need 
+$ mkdir build && cd build && cmake .. && make
+
+on windows, fail anyway.....
