@@ -15,10 +15,6 @@ if(WIN32)
 	)
 	message("BOOST_ROOT is ${BOOST_ROOT}")
 	
-	find_path(BOOST_LIBRARYDIR NAMES lib/libboost*.lib HINTS
-		"$ENV{BOOST_ROOT}"
-		"$ENV{BOOSTROOT}"
-	)
 	
 endif()
 
