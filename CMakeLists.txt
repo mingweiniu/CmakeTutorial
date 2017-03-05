@@ -8,7 +8,7 @@ add_executable(${PRROJ_NAME} ${SOURCES})
 
 #find Boost
 
-set(NEED_BOOST_COMPONENTS thread date_time)
+set(NEED_BOOST_COMPONENTS filesystem system)
 include(${CMAKE_SOURCE_DIR}/cmake/Modules/getBoost.cmake)
 
 if(Boost_FOUND)
