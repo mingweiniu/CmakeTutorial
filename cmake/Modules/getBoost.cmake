@@ -14,6 +14,7 @@ if(WIN32)
 		"$ENV{BOOSTROOT}"
 	)
 	message("BOOST_ROOT is ${BOOST_ROOT}")
+	message("BOOST_LIBRARIES are ${BOOST_LIBRARIES}")
 	
 	
 endif()
