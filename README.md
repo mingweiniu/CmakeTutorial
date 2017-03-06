@@ -8,5 +8,5 @@ $ mkdir build && cd build && cmake .. && make
 
 
 on windows, 
-need BOOST_ROOT in $Env:Path, 
+you need BOOST_ROOT in $Env:Path, 
 then you could use cmake gui.
