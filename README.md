@@ -1,4 +1,4 @@
-# cmake_test_boost
+# cmake_template
 
 on unix, you will fail if just
 $ g++ main.cpp
