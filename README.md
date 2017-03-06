@@ -6,4 +6,5 @@ $ g++ main.cpp
 you need 
 $ mkdir build && cd build && cmake .. && make
 
-on windows, fail anyway.....
+on windows, need BOOST_ROOT in path
+then you could use cmake gui.
