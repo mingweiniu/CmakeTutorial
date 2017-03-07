@@ -18,6 +18,4 @@ endif()
 
 message("find_package(Boost)")
 find_package(Boost COMPONENTS ${NEED_BOOST_COMPONENTS} REQUIRED)
-
 message("BOOST_ROOT is ${BOOST_ROOT}")
-message("BOOST_LIBRARIES are ${BOOST_LIBRARIES}")
