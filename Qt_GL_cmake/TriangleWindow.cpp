@@ -110,9 +110,10 @@ void TriangleWindow::render()
 	
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(0);
-
+	
+	glBindBuffer(GL_ARRAY_BUFFER, NULL);
+	
 	m_program->release();
-
 }
 
 void TriangleWindow::mousePressEvent(QMouseEvent* event)
