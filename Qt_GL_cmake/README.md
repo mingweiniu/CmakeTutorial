@@ -1,5 +1,5 @@
 # QtGL_test  
-manipulate pen drawing (NPR homework1)
+manipulate pen drawing
 
 ##Keyboard
 'Up' : make pen dot bigger  
