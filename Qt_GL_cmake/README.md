@@ -15,7 +15,7 @@ manipulate pen drawing (NPR homework1)
 
 ##Command on Windows PowerShell:  
 First, you need $ENV:Qt5_ROOT  
-Second, you need add C:\Windows\Microsoft.NET\Framework\\_v4.0.30319_ to Path 
+Second, you need add C:\Windows\Microsoft.NET\Framework\\_v4.0.30319_ to Path  
 PS\\> mkdir build  
 PS\\> cd build  
 PS\\> cmake -G "Visual Studio 14 Win64" ..  
