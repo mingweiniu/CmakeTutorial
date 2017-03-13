@@ -14,7 +14,7 @@ manipulate pen drawing (NPR homework1)
   * Qt5 (5.8 is better)  
 
 ##Command on Windows PowerShell:  
-First, you need $ENV:Qt5_ROOT 
+First, you need $ENV:Qt5_ROOT  
 Second, you need add C:\Windows\Microsoft.NET\Framework\\_v4.0.30319_ to Path 
 PS\\> mkdir build  
 PS\\> cd build  
