@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.5)
 set(CMAKE_CXX_STANDARD 14)
 
-set(PRROJ_NAME cmake_template)
+set(PRROJ_NAME 02Boost)
 project (${PRROJ_NAME})
 
 set(SOURCES "main.cpp")
