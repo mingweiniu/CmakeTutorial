@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.5)
 
-set(PRROJ_NAME QtGL_test) 
+set(PRROJ_NAME 03QtGL) 
 project (${PRROJ_NAME})
 
 set(HEADERS ${HEADERS} OpenGLWindow.hpp TriangleWindow.hpp ) 
