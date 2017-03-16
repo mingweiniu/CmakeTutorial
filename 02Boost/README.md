@@ -1,4 +1,4 @@
-# cmake_template
+# 02Boost
 
 on unix, you will fail if just
 $ g++ main.cpp
