@@ -2,14 +2,14 @@
 
 here are cmakelist examples,
 
-##01googletest  
+## 01googletest  
 this is the simplest one CMakeLists.txt  
 
-##02boost  
+## 02boost  
 shows how to combine components  
 
-##03QtGL 
+## 03QtGL 
 demonstrates how to use functions or macros  
 
-##04opencv
+## 04opencv
 illuminates a source project  
