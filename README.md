@@ -21,3 +21,8 @@ demonstrates how to use functions or macros
 illuminates a source project with file tree  
   * key functions or macros:  
     file, include_directories, add_subdirectory
+
+## 05FBX
+write a FindFBX.cmake by yourself 
+  * key functions or macros:  
+    find_library, add_definitions, option
