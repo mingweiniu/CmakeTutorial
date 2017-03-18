@@ -12,15 +12,15 @@
 #include <cstdlib>
 #include <iostream>
 
-#include <yp/Geometry/ypGeometry.hpp>
-#include <yp/File/ypReadDirectory.hpp>
+#include <yp/Geometry/Geometry.hpp>
+#include <yp/File/ReadDirectory.hpp>
 
 
 
 int main(int argc, char** argv)
 {
-	yp_demo_geometry_fbx();
-	yp_demo_read_file();
+	yp::demo_geometry_fbx();
+	yp::demo_read_file();
 	system("PAUSE");
 }
 #endif // !MAIN_CPP
