@@ -10,8 +10,8 @@
 void yp_demo_geometry_fbx() {
 	
 	// initialize environment
-	ypManagerHandle<> Manager1("Manager1");
-	ypSceneHandle<> MyScene1(Manager1.getManager());
+	ypManagerHandle Manager1("Manager1");
+	ypSceneHandle MyScene1(Manager1.getManager());
 	
 	// draw a cylinder
 	ypCylinder cylinder_1(MyScene1.getScene(), "cylinder_1");
@@ -41,5 +41,6 @@ void yp_demo_geometry_fbx() {
 
 	std::string save_place = save_path + save_name;
 	MyScene1.Save(save_place);	
+	
 }
 #endif // !YPGEOMETRY_HPP

@@ -2,16 +2,17 @@ cmake_minimum_required(VERSION 3.5)
 # C++14 is required
 set(CMAKE_CXX_STANDARD 14)
 
-set(PRROJ_NAME "05FBX")
+set(PRROJ_NAME "ypFBX")
 project (${PRROJ_NAME})
 
 # user define Find_packages
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
-
 include_directories("${CMAKE_SOURCE_DIR}/include")
-set(PROJ_INCLUDE_DIRS ${PROJ_INCLUDE_DIRS} "${PROJECT_SOURCE_DIR}/include")
 
+set(PROJ_INCLUDE_DIRS ${PROJ_INCLUDE_DIRS} "${PROJECT_SOURCE_DIR}/include")
+file(GLOB_RECURSE My_LIB_SOURCES "${CMAKE_SOURCE_DIR}/src/*.cpp")
+#file(GLOB_RECURSE My_LIB_SOURCES "${CMAKE_SOURCE_DIR}/src/hw1/*.cpp")
 file(GLOB_RECURSE My_HEADERS "${CMAKE_SOURCE_DIR}/include/*.hpp")
 set(HEADERS ${HEADERS} ${My_HEADERS}) 
 set(SOURCES ${SOURCES} main.cpp ${HEADERS}) 
@@ -19,30 +20,21 @@ set(LIB_SOURCES ${LIB_SOURCES})
 add_executable(${PRROJ_NAME} ${SOURCES})
 
 
-
-# finding FBX
-set(PACKAGE_TARGET FBX)
-find_package(${PACKAGE_TARGET})
-message("${PACKAGE_TARGET}_FOUND is ${${PACKAGE_TARGET}_FOUND}") 
-if(${${PACKAGE_TARGET}_FOUND})
-    set(PROJ_INCLUDE_DIRS ${PROJ_INCLUDE_DIRS} "${${PACKAGE_TARGET}_INCLUDE_DIRS}")
-    set(PROJ_LIBRARIES ${PROJ_LIBRARIES} "${${PACKAGE_TARGET}_LIBS}")
-endif() 
-
+include(${CMAKE_SOURCE_DIR}/cmake/getBoost.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/getFBX.cmake)
 
 
 message("include_directories(${PROJ_INCLUDE_DIRS})")
 include_directories(${PROJ_INCLUDE_DIRS})
 
-#set(My_LIB "mylib")
-#add_subdirectory("src/${My_LIB}")
-#add_library("lib_${My_LIB}" ${My_LIB_SOURCES} ) 
-#set(PROJ_LIBRARIES ${PROJ_LIBRARIES} "lib_${My_LIB}")
+set(My_LIB "yp")
+add_subdirectory("src/${My_LIB}")
+add_library("lib_${My_LIB}" ${My_LIB_SOURCES} ) 
+set(PROJ_LIBRARIES ${PROJ_LIBRARIES} "lib_${My_LIB}")
+
 
 message("target_link_libraries(${PRROJ_NAME} ${PROJ_LIBRARIES})")
 target_link_libraries(${PRROJ_NAME} ${PROJ_LIBRARIES})
-
-
 
 set(MY_CPP_FLAGS ${MY_CPP_FLAGS})
 if(UNIX)

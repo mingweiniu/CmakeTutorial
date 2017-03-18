@@ -4,6 +4,7 @@ create polygonal model
 # Prerequisites  
   * CMake (3.5 or latter)  
   * FBX (2017.1)  
+  * Boost (1.60 or latter)
 
 ## Command on Windows PowerShell:  
 First, you need $ENV:FBX_ROOT

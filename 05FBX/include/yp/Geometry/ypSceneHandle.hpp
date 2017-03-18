@@ -5,7 +5,7 @@
 #include <string>
 #include <fbxsdk.h>
 
-template<typename...Ts>
+
 class ypSceneHandle {
 public:
 	ypSceneHandle(FbxManager* Manager);
@@ -19,15 +19,15 @@ private:
 	FbxManager* Manager;
 };
 
-template<typename ...Ts>
-ypSceneHandle<Ts...>::ypSceneHandle(FbxManager* Manager):Manager(Manager)
+
+ypSceneHandle::ypSceneHandle(FbxManager* Manager) :Manager(Manager)
 {
 	//Create an FBX scene. This object holds most objects imported/exported from/to files.
 	Scene = FbxScene::Create(Manager, "My Scene");
 	if (!Scene) FBXSDK_printf("Error: Unable to create FBX scene!\n");
 
 	Root = Scene->GetRootNode();
-	
+
 
 	// create scene info
 	auto sceneInfo = FbxDocumentInfo::Create(Manager, "SceneInfo");
@@ -39,29 +39,29 @@ ypSceneHandle<Ts...>::ypSceneHandle(FbxManager* Manager):Manager(Manager)
 	sceneInfo->mComment = "no particular comments required.";
 	// that function is asking the scene for the sceneInfo.
 	Scene->SetSceneInfo(sceneInfo);
-	
+
 }
 
-template<typename ...Ts>
-ypSceneHandle<Ts...>::~ypSceneHandle()
+
+ypSceneHandle::~ypSceneHandle()
 {
 	//do nothing
 }
 
-template<typename ...Ts>
-inline FbxScene * ypSceneHandle<Ts...>::getScene()
+
+inline FbxScene * ypSceneHandle::getScene()
 {
 	return Scene;
 }
 
-template<typename ...Ts>
-void ypSceneHandle<Ts...>::addNode(FbxNode* Node)
+
+void ypSceneHandle::addNode(FbxNode* Node)
 {
 	Root->AddChild(Node);
 }
 
-template<typename ...Ts>
-bool ypSceneHandle<Ts...>::Save(std::string PATH)
+
+bool ypSceneHandle::Save(std::string PATH)
 {
 	std::cout << "Saving Scene to : " << PATH << '\n';
 	int FileFormat = 0;
@@ -94,7 +94,7 @@ bool ypSceneHandle<Ts...>::Save(std::string PATH)
 
 	// Initialize the exporter by providing a filename.
 	auto res = lExporter->Initialize(PATH.c_str(), FileFormat, Manager->GetIOSettings());
-	if ( res == false)
+	if (res == false)
 	{
 		FBXSDK_printf("Call to FbxExporter::Initialize() failed.\n");
 		FBXSDK_printf("Error returned: %s\n\n", lExporter->GetStatus().GetErrorString());

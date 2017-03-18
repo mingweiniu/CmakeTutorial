@@ -6,16 +6,16 @@
 #include "ypFileContent.hpp"
 
 void yp_demo_read_file() {
-	
+
 	std::vector<ypFileContent> read_files;
-	
-	auto dir_testDate = files_path("./testData/");
-	for (auto i : dir_testDate) {
+
+	ypDirectory dir_testDate("./testData/");
+	for (auto i : dir_testDate.files_path) {
 		ypFileContent temp(i);
 		read_files.push_back(std::move(temp));
 		std::cout << "read_files.push_back(" << i << ")\n";
 	}
-	
+
 	for (auto file : read_files) {
 		std::cout << file.getPath() << '\n';
 		for (auto component : file.Objects) {
@@ -28,7 +28,6 @@ void yp_demo_read_file() {
 			}
 		}
 	}
-	
 }
 
 #endif // !YPREADDIRECTORY_HPP

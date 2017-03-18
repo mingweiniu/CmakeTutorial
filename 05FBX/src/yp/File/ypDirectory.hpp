@@ -4,13 +4,24 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+/*
 #include <boost/filesystem.hpp>
 #include <boost/range/iterator_range.hpp>
+*/
 
-decltype(auto) files_path(std::string directory_path) {
-	
+
+class ypDirectory {
+public:
+	ypDirectory(std::string directory_path);
 	std::vector<std::string> files_path;
+
+private:
+
+};
+
+ypDirectory::ypDirectory(std::string directory_path) {
+	//enum all file in this dir
+	/*
 	boost::filesystem::path dir_path(directory_path.c_str());
 	auto is_path = boost::filesystem::is_directory(dir_path);
 	std::string temp_chars;
@@ -18,8 +29,10 @@ decltype(auto) files_path(std::string directory_path) {
 		auto temp_path = entry.path();
 		files_path.push_back(temp_path.string());
 	}
-	return files_path;
-
+	*/
 }
+
+
+
 
 #endif // !YPDIRECTORY_HPP
