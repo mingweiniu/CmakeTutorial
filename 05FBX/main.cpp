@@ -12,7 +12,7 @@
 #include <cstdlib>
 #include <iostream>
 
-#include <yp/Geometry/demo_draw_fbx.hpp>
+#include <yp/demo_draw_fbx.hpp>
 #include <yp/File/ReadDirectory.hpp>
 #include <yp/demo_read_generate_fbx.hpp>
 
@@ -36,6 +36,6 @@ int main(int argc, char** argv)
 
 
 
-	system("PAUSE");
+	//system("PAUSE");
 }
 #endif // !MAIN_CPP

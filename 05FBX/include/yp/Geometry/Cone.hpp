@@ -20,11 +20,11 @@ namespace yp {
 			double lRadius = 15.0;
 			for (int i = 0; i < segment; i++)
 			{
-				lRadius = lRadius * i / 7;
-				CylinderVector4[4 * i + 0].Set(lRadius, 0.0, (i - 3)*lSegmentLength);
-				CylinderVector4[4 * i + 1].Set(0.0, -lRadius, (i - 3)*lSegmentLength);
-				CylinderVector4[4 * i + 2].Set(-lRadius, 0.0, (i - 3)*lSegmentLength);
-				CylinderVector4[4 * i + 3].Set(0.0, lRadius, (i - 3)*lSegmentLength);
+				auto Radius = lRadius * i / 7;
+				CylinderVector4[4 * i + 0].Set(Radius, 0.0, (i - 3)*lSegmentLength);
+				CylinderVector4[4 * i + 1].Set(0.0, -Radius, (i - 3)*lSegmentLength);
+				CylinderVector4[4 * i + 2].Set(-Radius, 0.0, (i - 3)*lSegmentLength);
+				CylinderVector4[4 * i + 3].Set(0.0, Radius, (i - 3)*lSegmentLength);
 			}
 
 		}
