@@ -1,8 +1,6 @@
 #ifndef ELBOW45_HPP
 #define ELBOW45_HPP
 
-
-
 #include <cmath>
 
 #include <iostream>

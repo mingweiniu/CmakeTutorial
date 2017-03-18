@@ -19,17 +19,14 @@ namespace yp {
 		Elbow90(FbxScene* Scene, std::string Name)
 		{
 			namespace geo = boost::geometry;
-
 			using vec3 = geo::model::point<double, 3, geo::cs::cartesian>;
 
 			double R1 = 20.0;
 
 			// center 1
 			vec3 C1{ 40, 0, 0 };
-
 			// center 2
 			vec3 C2{ 0, 40, 0 };
-
 			// Cross point
 			vec3 Cp{ 0, 0, 0 };
 
@@ -52,14 +49,12 @@ namespace yp {
 
 
 			geo::divide_value(H, len(H));
-
-
 			geo::multiply_value(H, -len(V));
-
 
 			std::cout << "print_vec3(H) :  \n";
 			print_vec3(H);
 			std::vector<vec3> VK(7, H);
+
 
 			VK[0] = V;
 			geo::multiply_value(VK[0], -1);
