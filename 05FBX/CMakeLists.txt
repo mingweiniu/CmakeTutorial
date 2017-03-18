@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 # C++14 is required
 set(CMAKE_CXX_STANDARD 14)
 
-set(PRROJ_NAME "ypFBX")
+set(PRROJ_NAME "05FBX")
 project (${PRROJ_NAME})
 
 # user define Find_packages
