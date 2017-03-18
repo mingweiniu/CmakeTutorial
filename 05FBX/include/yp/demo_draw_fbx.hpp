@@ -44,9 +44,9 @@ namespace yp {
 
 
 		// draw an Elbow with 45 degree
-		//yp::Elbow45 Elbow45_1(MyScene1.getScene(), "Elbow45_1");
-		//Elbow45_1.trans(100, 0, 0);
-		//MyScene1.addNode(Elbow45_1.getNode());
+		yp::Elbow45 Elbow45_1(MyScene1.getScene(), "Elbow45_1");
+		Elbow45_1.trans(0, 200, 0);
+		MyScene1.addNode(Elbow45_1.getNode());
 		
 
 

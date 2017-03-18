@@ -13,26 +13,13 @@
 #include "GeomertyBase.hpp"
 
 namespace yp {
-
-	void print_vec3(boost::geometry::model::point<double, 3, boost::geometry::cs::cartesian> vec3) {
-		decltype(vec3) zero{0,0,0};
-		auto x = vec3.get<0>();
-		auto y = vec3.get<1>();
-		auto z = vec3.get<2>();
-		std::cout << '\t' << x << "," << y << ',' << z << '\t' << boost::geometry::distance(vec3, zero) << '\n';
-	}
-
-	double len(boost::geometry::model::point<double, 3, boost::geometry::cs::cartesian> vec3) {
-		decltype(vec3) zero{ 0,0,0 };
-		return boost::geometry::distance(vec3, zero);
-	}
-
 	class Elbow90 : public GeomertyBase<FbxPatch> {
 	public:
+
 		Elbow90(FbxScene* Scene, std::string Name)
 		{
 			namespace geo = boost::geometry;
-			
+
 			using vec3 = geo::model::point<double, 3, geo::cs::cartesian>;
 
 			double R1 = 20.0;
@@ -42,7 +29,7 @@ namespace yp {
 
 			// center 2
 			vec3 C2{ 0, 40, 0 };
-					
+
 			// Cross point
 			vec3 Cp{ 0, 0, 0 };
 
@@ -69,18 +56,21 @@ namespace yp {
 
 			geo::multiply_value(H, -len(V));
 
-			
+
 			std::cout << "print_vec3(H) :  \n";
 			print_vec3(H);
-			std::vector<vec3> VK(5, H);
+			std::vector<vec3> VK(7, H);
 
 			VK[0] = V;
 			geo::multiply_value(VK[0], -1);
-			VK[4] = U;
-			geo::multiply_value(VK[4], -1);
+			VK[1] = VK[0];
 
-			geo::add_point(VK[1], VK[0]);
-			geo::add_point(VK[3], VK[4]);
+			VK[6] = U;
+			geo::multiply_value(VK[6], -1);
+			VK[5] = VK[6];
+
+			geo::add_point(VK[2], VK[1]);
+			geo::add_point(VK[4], VK[5]);
 
 
 			// control point set
@@ -115,10 +105,10 @@ namespace yp {
 				cpSet.push_back(control_points);
 			}
 
-			
+
 			init_scene_name_obj(Scene, Name);
 
-			const int segments = 5;
+			const int segments = 7;
 
 			// Set patch properties.
 			Obj->InitControlPoints(4, FbxPatch::eBSpline, segments, FbxPatch::eBSpline);
@@ -126,8 +116,8 @@ namespace yp {
 			Obj->SetClosed(true, false);
 
 			FbxVector4* CylinderVector4 = Obj->GetControlPoints();
-			
-			
+
+
 			for (int i = 0; i < segments; ++i) {
 				std::cout << '\n';
 				for (int j = 0; j < 4; ++j) {
@@ -136,9 +126,21 @@ namespace yp {
 					CylinderVector4[4 * i + j].Set(cpSet[i][j].get<0>(), cpSet[i][j].get<1>(), cpSet[i][j].get<2>());
 				}
 			}
-			
 
 
+		}
+	private:
+		void print_vec3(boost::geometry::model::point<double, 3, boost::geometry::cs::cartesian> vec3) {
+			decltype(vec3) zero{ 0,0,0 };
+			auto x = vec3.get<0>();
+			auto y = vec3.get<1>();
+			auto z = vec3.get<2>();
+			std::cout << '\t' << x << "," << y << ',' << z << '\t' << boost::geometry::distance(vec3, zero) << '\n';
+		}
+
+		double len(boost::geometry::model::point<double, 3, boost::geometry::cs::cartesian> vec3) {
+			decltype(vec3) zero{ 0,0,0 };
+			return boost::geometry::distance(vec3, zero);
 		}
 	};
 }

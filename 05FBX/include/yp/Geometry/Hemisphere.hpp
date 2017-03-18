@@ -20,21 +20,26 @@ namespace yp {
 			Obj->SetClosed(true, false);
 
 			FbxVector4* CylinderVector4 = Obj->GetControlPoints();
-			double R = 30.0;
-			double lSegmentLength = R / segments;
-			for (int i = 0; i < segments; i++)
+			double R = 40.0;
+			double lSegmentLength = R / (segments + 1);
+
+			for (int i = 0; i < (segments - 1); i++)
 			{
-				auto length = static_cast<double>(i);
-				auto degree = std::acos(length / segments);
-				std::cout << " degree is " << degree << '\n';
+				auto length = static_cast<double>(i + 1);
+				auto degree = std::acos(length / (segments - 1));
 				auto Radius = std::sin(degree) * R;
-				if (Radius < 1e-8) Radius = 0.001;
-				std::cout << " Radius is " << Radius << '\n';
+				std::cout << " degree is " << degree << " Radius is " << Radius << '\n';
 				CylinderVector4[4 * i + 0].Set(Radius, 0.0, (i)*lSegmentLength);
 				CylinderVector4[4 * i + 1].Set(0.0, -Radius, (i)*lSegmentLength);
 				CylinderVector4[4 * i + 2].Set(-Radius, 0.0, (i)*lSegmentLength);
 				CylinderVector4[4 * i + 3].Set(0.0, Radius, (i)*lSegmentLength);
 			}
+			int i = segments - 1;
+			auto Radius = 0.0f;
+			CylinderVector4[4 * i + 0].Set(Radius, 0.0, (i-1)*lSegmentLength);
+			CylinderVector4[4 * i + 1].Set(0.0, -Radius, (i-1)*lSegmentLength);
+			CylinderVector4[4 * i + 2].Set(-Radius, 0.0, (i-1)*lSegmentLength);
+			CylinderVector4[4 * i + 3].Set(0.0, Radius, (i-1)*lSegmentLength);
 
 		}
 	};

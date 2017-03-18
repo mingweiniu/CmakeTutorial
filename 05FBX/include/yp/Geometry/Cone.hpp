@@ -17,8 +17,8 @@ namespace yp {
 
 			FbxVector4* CylinderVector4 = Obj->GetControlPoints();
 			double lSegmentLength = 10.0;
-			double lRadius = 15.0;
-			for (int i = 0; i < segment; i++)
+			double lRadius = 40.0;
+			for (int i = 0; i < segment; ++ i)
 			{
 				auto Radius = lRadius * i / 7;
 				CylinderVector4[4 * i + 0].Set(Radius, 0.0, (i - 3)*lSegmentLength);
