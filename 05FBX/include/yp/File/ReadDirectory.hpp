@@ -11,6 +11,7 @@ namespace yp {
 		std::vector<yp::FileContent> read_files;
 
 		auto dir_testDate = files_path("./testData/");
+
 		for (auto i : dir_testDate) {
 			yp::FileContent temp(i);
 			read_files.push_back(std::move(temp));

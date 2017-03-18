@@ -20,8 +20,8 @@ namespace yp {
 		// just draw someting from txt to fbx to files
 		std::string read_path(".\\testData\\");
 		std::vector<yp::FileContent> read_files;
-		yp::Directory dir_testDate(read_path.c_str());
-		for (auto i : dir_testDate.files_path) {
+		auto dir_testDate = files_path(read_path.c_str());
+		for (auto i : dir_testDate) {
 			yp::FileContent temp(i);
 			read_files.push_back(std::move(temp));
 			std::cout << "read_files.push_back(" << i << ")\n";
