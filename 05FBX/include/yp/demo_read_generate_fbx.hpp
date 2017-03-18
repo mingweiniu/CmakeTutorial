@@ -11,23 +11,31 @@
 #include <string>
 #include <cstdlib>
 #include <iostream>
+#include <utility>
 
-#include "./Geometry/Geometry.hpp"
-#include "./File/ReadDirectory.hpp"
+#include "File/ReadDirectory.hpp"
+#include "Geometry/ManagerHandle.hpp"
+#include "Geometry/SceneHandle.hpp"
+#include "Geometry/Cube.hpp"
+#include "Geometry/Cylinder.hpp"
+#include "Geometry/Sphere.hpp"
 
 namespace yp {
-	void demo_read_generate_fbx() {
+	void demo_read_generate_fbx(std::string path) {
 		// just draw someting from txt to fbx to files
-		std::string read_path(".\\testData\\");
+		std::string read_path{ path };
+		//std::string read_path(".\\testData\\");
 		std::vector<yp::FileContent> read_files;
-		auto dir_testDate = files_path(read_path.c_str());
-		for (auto i : dir_testDate) {
-			yp::FileContent temp(i);
+		auto paths = files_path(read_path.c_str());
+		for (auto path : paths) {
+			yp::FileContent temp(path);
+			std::cout << "read_files.push_back(" << path << ")\n";
 			read_files.push_back(std::move(temp));
-			std::cout << "read_files.push_back(" << i << ")\n";
+			
 		}
 
 		for (auto file : read_files) {
+			std::cout << "path is : " << file.getPath() << '\n';
 			yp::ManagerHandle Manager1(file.getPath());
 			yp::SceneHandle MyScene1(Manager1.getManager());
 			std::cout << "searching : " << file.getPath() << '\n';
@@ -79,6 +87,7 @@ namespace yp {
 				}
 
 			}
+
 
 			// save it
 			auto save_path{ file.getPath() };

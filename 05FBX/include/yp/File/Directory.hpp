@@ -24,10 +24,8 @@ namespace yp {
 				auto temp_path = entry.path();
 				files_path.push_back(temp_path.string());
 			}
-
-			return files_path;
-
 		}
+		return files_path;
 	}
 }
 #endif // !YPDIRECTORY_HPP

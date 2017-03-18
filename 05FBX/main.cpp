@@ -12,16 +12,30 @@
 #include <cstdlib>
 #include <iostream>
 
-#include <yp/Geometry/Geometry.hpp>
+#include <yp/Geometry/demo_draw_fbx.hpp>
 #include <yp/File/ReadDirectory.hpp>
-#include <yp/ReadGenFBX.hpp>
+#include <yp/demo_read_generate_fbx.hpp>
 
 
 int main(int argc, char** argv)
 {
-	yp::demo_geometry_fbx();
-	yp::demo_read_file();
-	yp::demo_read_generate_fbx();
+	std::vector<std::string> inputs;
+	inputs.reserve(argc);
+	for (int i = 0; i < argc; ++i) {
+		inputs.push_back(argv[i]);
+	}
+	std::cout << "argvs are : \n";
+	for(auto argv : inputs){
+		std::cout << '\t' << argv << '\n';
+	}
+	
+	yp::demo_draw_fbx();
+	//yp::demo_read_file();
+	//yp::demo_read_generate_fbx(inputs[1]);
+
+
+
+
 	system("PAUSE");
 }
 #endif // !MAIN_CPP
