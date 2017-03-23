@@ -22,11 +22,9 @@
 
 namespace yp {
 	void demo_read_generate_fbx(std::string path) {
-		// just draw someting from txt to fbx to files
-		std::string read_path{ path };
-		//std::string read_path(".\\testData\\");
+
 		std::vector<yp::FileContent> read_files;
-		auto paths = files_path(read_path.c_str());
+		auto paths = files_path(path.c_str());
 		for (auto path : paths) {
 			yp::FileContent temp(path);
 			std::cout << "read_files.push_back(" << path << ")\n";
