@@ -82,6 +82,36 @@ int main(int argc, char** argv)
 				}
 			}
 			std::cout << "(low, high)" << RangeLow << ", " << RangeHigh << '\n';
+
+			std::vector<long long> RangeLxyzHxyz;
+
+			while (RangeLow.find(",") < RangeLow.size()) {
+				std::string number(RangeLow, 0, RangeLow.find(","));
+				RangeLxyzHxyz.push_back(std::stoll(number));
+				RangeLow.erase(RangeLow.begin(), RangeLow.begin() + RangeLow.find(",") + 1);
+			}
+			if (RangeLow.find("\"") < RangeLow.size()) {
+				RangeLow.erase(RangeLow.find("\""));
+				RangeLxyzHxyz.push_back(std::stoll(RangeLow));
+			}
+
+
+			while (RangeHigh.find(",") < RangeHigh.size()) {
+				std::string number(RangeHigh, 0, RangeHigh.find(","));
+				RangeLxyzHxyz.push_back(std::stoll(number));
+				RangeHigh.erase(RangeHigh.begin(), RangeHigh.begin() + RangeHigh.find(",") + 1);
+			}
+			if (RangeHigh.find("\"") < RangeHigh.size()) {
+				RangeHigh.erase(RangeHigh.find("\""));
+				RangeLxyzHxyz.push_back(std::stoll(RangeHigh));
+			}
+
+			
+			for (auto i : RangeLxyzHxyz) {
+				std::cout << i << '\n';
+			}
+
+
 			auto component_name{ std::move(model) };
 			component_name += '?';
 			component_name += std::move(element);
