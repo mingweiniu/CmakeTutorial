@@ -11,7 +11,7 @@ namespace yp {
 		{
 			init_scene_name_obj(Scene, Name);
 
-			const int cube_size = 50;
+			const double cube_size = 0.5;
 			// draw a cube
 			// L: leftside ; R: rightside
 			// D: downside ; U: Upperside

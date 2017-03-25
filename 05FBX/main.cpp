@@ -18,6 +18,8 @@
 
 #define DEBUG_VS14
 
+bool show_datas = false;
+
 int main(int argc, char** argv)
 {
 #if !defined(DEBUG_VS14)
@@ -81,43 +83,80 @@ int main(int argc, char** argv)
 					RangeHigh += temp;
 				}
 			}
-			std::cout << "(low, high)" << RangeLow << ", " << RangeHigh << '\n';
-
-			std::vector<long long> RangeLxyzHxyz;
-
-			while (RangeLow.find(",") < RangeLow.size()) {
+			if (show_datas) {
+				std::cout << "(low, high)" << RangeLow << ", " << RangeHigh << '\n';
+			}
+			double Range_L_x, Range_L_y, Range_L_z;
+			double Range_H_x, Range_H_y, Range_H_z;
+			
+			if (RangeLow.find(",") < RangeLow.size()) {
 				std::string number(RangeLow, 0, RangeLow.find(","));
-				RangeLxyzHxyz.push_back(std::stoll(number));
+				Range_L_x = (std::stod(number));
+				RangeLow.erase(RangeLow.begin(), RangeLow.begin() + RangeLow.find(",") + 1);
+			}
+			if (RangeLow.find(",") < RangeLow.size()) {
+				std::string number(RangeLow, 0, RangeLow.find(","));
+				Range_L_y = (std::stod(number));
 				RangeLow.erase(RangeLow.begin(), RangeLow.begin() + RangeLow.find(",") + 1);
 			}
 			if (RangeLow.find("\"") < RangeLow.size()) {
 				RangeLow.erase(RangeLow.find("\""));
-				RangeLxyzHxyz.push_back(std::stoll(RangeLow));
+				Range_L_z = (std::stod(RangeLow));
 			}
-
-
-			while (RangeHigh.find(",") < RangeHigh.size()) {
+			
+			if (RangeHigh.find(",") < RangeHigh.size()) {
 				std::string number(RangeHigh, 0, RangeHigh.find(","));
-				RangeLxyzHxyz.push_back(std::stoll(number));
+				Range_H_x = (std::stod(number));
 				RangeHigh.erase(RangeHigh.begin(), RangeHigh.begin() + RangeHigh.find(",") + 1);
 			}
+
+			if (RangeHigh.find(",") < RangeHigh.size()) {
+				std::string number(RangeHigh, 0, RangeHigh.find(","));
+				Range_H_y = (std::stod(number));
+				RangeHigh.erase(RangeHigh.begin(), RangeHigh.begin() + RangeHigh.find(",") + 1);
+			}
+
+
 			if (RangeHigh.find("\"") < RangeHigh.size()) {
 				RangeHigh.erase(RangeHigh.find("\""));
-				RangeLxyzHxyz.push_back(std::stoll(RangeHigh));
+				Range_H_z = (std::stod(RangeHigh));
 			}
+			if (show_datas) {
+				std::cout << Range_L_x << ',' << Range_L_y << ',' << Range_L_z << '\t';
+				std::cout << Range_H_x << ',' << Range_H_y << ',' << Range_H_z << '\n';
+			}
+			double smaller = 1e5;
 
+			auto diff_x = std::abs(Range_L_x - Range_H_x) / smaller;
+			auto diff_y = std::abs(Range_L_y - Range_H_y) / smaller;
+			auto diff_z = std::abs(Range_L_z - Range_H_z) / smaller;
+
+			auto sum_x = std::abs(Range_L_x + Range_H_x) / smaller;
+			auto sum_y = std::abs(Range_L_y + Range_H_y) / smaller;
+			auto sum_z = std::abs(Range_L_z + Range_H_z) / smaller;
 			
-			for (auto i : RangeLxyzHxyz) {
-				std::cout << i << '\n';
-			}
-
-
 			auto component_name{ std::move(model) };
 			component_name += '?';
 			component_name += std::move(element);
-			std::cout << "creating : " << component_name << "\n";
+			if (show_datas) {
+				std::cout << "creating : " << component_name << "\n";
+			}
+	
+			yp::Cube cube_1(MyScene1.getScene(), component_name.c_str());
+			cube_1.trans(sum_x / 2 , sum_y / 2, sum_z / 2);
+			cube_1.scale(diff_x, diff_y, diff_z);
+			MyScene1.addNode(cube_1.getNode());
+
+			
 
 		}
+		
+		// save it
+		auto save_path{ file.getPath() };
+		save_path += ".fbx";
+		MyScene1.Save(save_path);
+		
+
 	}
 	system("PAUSE");
 }
