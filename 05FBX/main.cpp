@@ -37,8 +37,7 @@ int main(int argc, char** argv)
 #else
 	std::string path{ ".\\testData\\" };
 #endif
-
-
+	
 	//yp::demo_draw_fbx();
 	//yp::demo_read_file();
 	//yp::demo_read_generate_fbx(read_path);
