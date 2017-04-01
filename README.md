@@ -26,3 +26,8 @@ illuminates a source project with file tree
 write a FindFBX.cmake by yourself 
   * key functions or macros:  
     find_library, add_definitions, option
+
+## 06 glfw_glm
+use pkgconfig in cmake
+  * key functions or macros:  
+    pkg_search_module
