@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.5)
 set(CMAKE_CXX_STANDARD 14)
 
-set(PRROJ_NAME sn)
+set(PRROJ_NAME 06glfw_glm)
 project (${PRROJ_NAME})
 
 # user define Find_packages
