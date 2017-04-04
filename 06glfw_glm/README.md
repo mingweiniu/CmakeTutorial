@@ -1,4 +1,4 @@
-# snGE
+# 06glfw_glm
 
 this is simple framework for drawing
 
@@ -8,7 +8,6 @@ this is simple framework for drawing
   * Boost (1.60 or latter)  
   * glm (0.9.8.4 or latter)  
   * glfw (3.2 or latter)  
-  * Vulkan (1.0.42 or latter)  
   * pkg-config (if UNIX)  
 
 ### Build
