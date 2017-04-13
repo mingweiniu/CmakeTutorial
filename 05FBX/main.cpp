@@ -16,7 +16,7 @@
 #include <yp/File/ReadDirectory.hpp>
 #include <yp/demo_read_generate_fbx.hpp>
 
-#define DEBUG_VS14
+//#define DEBUG_VS14
 
 bool show_datas = false;
 
@@ -33,7 +33,7 @@ int main(int argc, char** argv)
 		std::cout << '\t' << argv << '\n';
 	}
 
-	auto read_path{ inputs[1] };
+	auto path{ inputs[1] };
 #else
 	std::string path{ ".\\testData\\" };
 #endif
@@ -42,21 +42,15 @@ int main(int argc, char** argv)
 	//yp::demo_read_file();
 	//yp::demo_read_generate_fbx(read_path);
 
-	std::vector<yp::FileContent> read_files;
 	auto paths = yp::files_path(path.c_str());
 	for (auto path : paths) {
-		yp::FileContent temp(path);
+		yp::FileContent read_file(path);
 		std::cout << "read_files.push_back(" << path << ")\n";
-		read_files.push_back(std::move(temp));
-
-	}
-
-	for (auto file : read_files) {
-		std::cout << "path is : " << file.getPath() << '\n';
-		yp::ManagerHandle Manager1(file.getPath());
+		std::cout << "path is : " << read_file.getPath() << '\n';
+		yp::ManagerHandle Manager1(read_file.getPath());
 		yp::SceneHandle MyScene1(Manager1.getManager());
-		std::cout << "searching : " << file.getPath() << '\n';
-		for (auto component : file.Objects) {
+		std::cout << "searching : " << read_file.getPath() << '\n';
+		for (auto component : read_file.Objects) {
 			std::string model{}, element{};
 			std::string RangeLow{}, RangeHigh{};
 			for (auto line : component) {
@@ -73,7 +67,7 @@ int main(int argc, char** argv)
 				}
 				auto find_low = line.find("RangeLow = <DPoint3d xyz=\"");
 				auto find_high = line.find("RangeHigh = <DPoint3d xyz=\"");
-				if (find_low < length){
+				if (find_low < length) {
 					decltype(line) temp(line, find_low + 26);
 					RangeLow += temp;
 				}
@@ -87,7 +81,7 @@ int main(int argc, char** argv)
 			}
 			double Range_L_x, Range_L_y, Range_L_z;
 			double Range_H_x, Range_H_y, Range_H_z;
-			
+
 			if (RangeLow.find(",") < RangeLow.size()) {
 				std::string number(RangeLow, 0, RangeLow.find(","));
 				Range_L_x = (std::stod(number));
@@ -102,7 +96,7 @@ int main(int argc, char** argv)
 				RangeLow.erase(RangeLow.find("\""));
 				Range_L_z = (std::stod(RangeLow));
 			}
-			
+
 			if (RangeHigh.find(",") < RangeHigh.size()) {
 				std::string number(RangeHigh, 0, RangeHigh.find(","));
 				Range_H_x = (std::stod(number));
@@ -133,28 +127,23 @@ int main(int argc, char** argv)
 			auto sum_x = std::abs(Range_L_x + Range_H_x) / smaller;
 			auto sum_y = std::abs(Range_L_y + Range_H_y) / smaller;
 			auto sum_z = std::abs(Range_L_z + Range_H_z) / smaller;
-			
+
 			auto component_name{ std::move(model) };
 			component_name += '?';
 			component_name += std::move(element);
 			if (show_datas) {
 				std::cout << "creating : " << component_name << "\n";
 			}
-	
+
 			yp::Cube cube_1(MyScene1.getScene(), component_name.c_str());
-			cube_1.trans(sum_x / 2 , sum_y / 2, sum_z / 2);
+			cube_1.trans(sum_x / 2, sum_y / 2, sum_z / 2);
 			cube_1.scale(diff_x, diff_y, diff_z);
 			MyScene1.addNode(cube_1.getNode());
-
-			
-
 		}
-		
 		// save it
-		auto save_path{ file.getPath() };
+		auto save_path{ read_file.getPath() };
 		save_path += ".fbx";
 		MyScene1.Save(save_path);
-		
 
 	}
 	system("PAUSE");
