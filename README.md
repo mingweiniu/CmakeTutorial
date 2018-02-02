@@ -1,4 +1,4 @@
-# cmake_tutorial
+# CmakeTutorial
 
 here are cmake project examples, these examples could help you to understand cmake from simple file to complex file tree.
 
@@ -31,3 +31,6 @@ write a FindFBX.cmake by yourself
 use pkgconfig in cmake
   * key functions or macros:  
     pkg_search_module
+
+## 07 
+perfer module with OO concept
